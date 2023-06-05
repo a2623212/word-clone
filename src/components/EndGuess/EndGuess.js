@@ -1,18 +1,23 @@
 import React from "react";
 
-function EndGuess({ status, guesses, answer }) {
+function EndGuess({ gameStatus, numOfGuesses, answer }) {
   return (
     <>
-      {status === "running" && undefined}
-      {status === "won" && (
+      {gameStatus === "running" && undefined}
+      {gameStatus === "won" && (
         <div className="happy banner">
           <p>
-            <strong>Congratulations!</strong> Got it in
-            <strong>{guesses.length} guesses</strong>.
+            <strong>Congratulations!</strong> Got it in{" "}
+            <strong>
+              {numOfGuesses === 1
+                ? "1 guess"
+                : `${numOfGuesses} guesses`}
+            </strong>
+            .
           </p>
         </div>
       )}
-      {status === "lost" && (
+      {gameStatus === "lost" && (
         <div className="sad banner">
           <p>
             Sorry, the correct answer is <strong>{answer}</strong>.

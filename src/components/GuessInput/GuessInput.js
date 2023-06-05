@@ -1,7 +1,12 @@
 import React from "react";
 import EndGuess from "../EndGuess";
 
-function GuessInput({ handleAfterSubmit, status, guesses, answer }) {
+function GuessInput({
+  handleAfterSubmit,
+  gameStatus,
+  guesses,
+  answer,
+}) {
   const [tentativeGuess, setTentativeGuess] = React.useState("");
 
   const handleSubmit = (event) => {
@@ -25,14 +30,18 @@ function GuessInput({ handleAfterSubmit, status, guesses, answer }) {
           minLength="5"
           maxLength="5"
           value={tentativeGuess}
-          disabled={status !== "running"}
+          disabled={gameStatus !== "running"}
           onChange={(event) => {
             const nextGuess = event.target.value.toUpperCase();
             setTentativeGuess(nextGuess);
           }}
         />
       </form>
-      <EndGuess status={status} guesses={guesses} answer={answer} />
+      <EndGuess
+        gameStatus={gameStatus}
+        numOfGuesses={guesses.length}
+        answer={answer}
+      />
     </>
   );
 }
